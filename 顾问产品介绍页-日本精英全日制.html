@@ -71,6 +71,26 @@
   .step h4{margin:10px 0 6px;color:var(--brand);font-size:16px}
   .step p{font-size:13px;color:var(--muted)}
 
+  /* 师资团队 */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .teacher{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .teacher:hover{transform:translateY(-4px)}
+  .teacher .head{display:flex;align-items:center;gap:16px;padding:22px;background:linear-gradient(135deg,#f7f9fd,#eef2fb);border-bottom:1px solid var(--line)}
+  .teacher .avatar{flex:0 0 auto;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;box-shadow:0 6px 16px rgba(31,56,100,.25)}
+  .teacher .who h3{color:var(--brand);font-size:19px}
+  .teacher .who .role{color:var(--gold);font-weight:600;font-size:13px;margin-top:2px}
+  .teacher .who .role b{color:var(--muted);font-weight:400}
+  .teacher .body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+  .teacher .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .teacher .tags span{background:var(--gold-soft);color:#5a4a14;font-size:12px;padding:3px 10px;border-radius:999px}
+  .teacher ul{list-style:none;margin:0 0 14px}
+  .teacher ul li{position:relative;padding-left:18px;font-size:13px;color:var(--muted);margin:6px 0}
+  .teacher ul li:before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .teacher .metrics{margin-top:auto;display:flex;gap:10px;border-top:1px dashed var(--line);padding-top:12px}
+  .teacher .metrics div{flex:1;text-align:center}
+  .teacher .metrics .v{color:var(--brand);font-weight:800;font-size:18px}
+  .teacher .metrics .k{color:var(--muted);font-size:12px}
+
   /* 案例墙 */
   .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
   .chip{border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer;font-size:14px;transition:.2s}
@@ -142,6 +162,7 @@
     <div>
       <a href="#highlight">产品亮点</a>
       <a href="#flow">服务流程</a>
+      <a href="#team">师资团队</a>
       <a href="#cases">成功案例</a>
       <a href="#compare">套餐对比</a>
       <a href="#contact" class="cta">预约咨询</a>
@@ -204,8 +225,79 @@
   </div>
 </section>
 
+<!-- 师资团队 -->
+<section id="team">
+  <div class="wrap">
+    <h2 class="sec-title">专业 <span>师资团队</span></h2>
+    <p class="sec-sub">以下为示例占位简历，请替换为机构真实老师信息（头像可换成照片）。</p>
+    <div class="team">
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">王</div>
+          <div class="who"><h3>王老师</h3><div class="role">首席规划顾问 <b>· 10 年日本申请经验</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>大学院修士</span><span>理工方向</span><span>选校规划</span></div>
+          <ul>
+            <li>东京大学硕士毕业，深耕日本理工科申请</li>
+            <li>擅长旧帝大、东工大等难关院校研究方向匹配</li>
+            <li>累计帮助 300+ 学生获得名校合格</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">10<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">300+</div><div class="k">成功案例</div></div>
+            <div><div class="v">N1</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">李</div>
+          <div class="who"><h3>李老师</h3><div class="role">资深文书 / 研究计划书导师 <b>· 8 年</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>研究计划书</span><span>文科/社科</span><span>教授套磁</span></div>
+          <ul>
+            <li>京都大学硕士，专注研究计划书与套磁辅导</li>
+            <li>擅长经济、传媒、社会学等方向课题打磨</li>
+            <li>指导文书获多所难关国公立内诺</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">8<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">500+</div><div class="k">文书篇数</div></div>
+            <div><div class="v">N1</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">张</div>
+          <div class="who"><h3>张老师</h3><div class="role">日语 / 面试辅导外教 <b>· 6 年</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>日语教学</span><span>模拟面试</span><span>EJU</span></div>
+          <ul>
+            <li>日本籍 / 海归外教，负责面试与口语特训</li>
+            <li>熟悉各校面试题型与教授偏好</li>
+            <li>EJU 与校内考备考经验丰富</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">6<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">1000+</div><div class="k">面试辅导</div></div>
+            <div><div class="v">母语</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- 成功案例 -->
-<section id="cases">
+<section id="cases" style="background:#fff">
   <div class="wrap">
     <h2 class="sec-title">学生 <span>成功案例</span></h2>
     <p class="sec-sub">以下为示例占位案例（已脱敏）。请将下方数据替换为机构真实案例。</p>
@@ -215,7 +307,7 @@
 </section>
 
 <!-- 套餐对比 -->
-<section id="compare" style="background:#fff">
+<section id="compare">
   <div class="wrap">
     <h2 class="sec-title">套餐 <span>对比</span></h2>
     <p class="sec-sub">帮助学生快速看清精英全日制的差异化价值。</p>
@@ -238,7 +330,7 @@
 </section>
 
 <!-- 适合人群 -->
-<section id="fit">
+<section id="fit" style="background:#fff">
   <div class="wrap">
     <h2 class="sec-title">适合 <span>哪些学生</span></h2>
     <div class="fit">
