@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本精英全日制（含学期）· 产品介绍</title>
+<style>
+  :root{
+    --brand:#1f3864; --brand2:#2e5090; --gold:#c9a227; --gold-soft:#f3e6c0;
+    --ink:#1b2330; --muted:#5b6675; --line:#e6e9ef; --bg:#f5f7fb;
+    --sakura:#f7d6dd; --ok:#1f9d6b;
+    --shadow:0 10px 30px rgba(31,56,100,.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0}
+  h2.sec-title{font-size:30px;text-align:center;color:var(--brand);letter-spacing:1px}
+  h2.sec-title span{color:var(--gold)}
+  .sec-sub{text-align:center;color:var(--muted);margin:10px auto 40px;max-width:680px}
+
+  /* 顶栏 */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-weight:800;color:var(--brand);font-size:18px;display:flex;align-items:center;gap:8px}
+  .logo b{color:var(--gold)}
+  .nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:14px;transition:.2s}
+  .nav a:hover{color:var(--brand)}
+  .nav .cta{background:var(--brand);color:#fff;padding:8px 16px;border-radius:999px}
+
+  /* Hero */
+  .hero{background:
+      radial-gradient(1200px 400px at 80% -10%, rgba(201,162,39,.18), transparent),
+      linear-gradient(135deg,#1f3864 0%, #2e5090 55%, #34619f 100%);
+    color:#fff;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;right:-60px;bottom:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--sakura),transparent 70%);opacity:.25}
+  .hero .wrap{padding:78px 24px 70px}
+  .tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;margin-bottom:18px}
+  .hero h1{font-size:44px;line-height:1.25;letter-spacing:1px}
+  .hero h1 em{font-style:normal;color:var(--gold-soft)}
+  .hero p.lead{margin-top:16px;font-size:17px;color:#dbe4f5;max-width:640px}
+  .hero .btns{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:600;transition:.2s}
+  .btn.gold{background:var(--gold);color:#3a2d00}
+  .btn.gold:hover{filter:brightness(1.05)}
+  .btn.ghost{border:1px solid rgba(255,255,255,.5);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* 数据条 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:54px}
+  .stat{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:20px;text-align:center}
+  .stat .num{font-size:34px;font-weight:800;color:#fff}
+  .stat .num b{color:var(--gold-soft)}
+  .stat .lbl{font-size:13px;color:#cdd8ef;margin-top:4px}
+
+  /* 亮点卡 */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);transition:.25s}
+  .card:hover{transform:translateY(-4px)}
+  .card .ico{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--gold-soft);margin-bottom:14px}
+  .card h3{color:var(--brand);font-size:18px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:14px}
+
+  /* 流程时间线 */
+  .flow{background:#fff}
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:10px}
+  .step{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px}
+  .step .n{position:absolute;top:-14px;left:18px;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .step h4{margin:10px 0 6px;color:var(--brand);font-size:16px}
+  .step p{font-size:13px;color:var(--muted)}
+
+  /* 师资团队 */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .teacher{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+  .teacher:hover{transform:translateY(-4px)}
+  .teacher .head{display:flex;align-items:center;gap:16px;padding:22px;background:linear-gradient(135deg,#f7f9fd,#eef2fb);border-bottom:1px solid var(--line)}
+  .teacher .avatar{flex:0 0 auto;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;box-shadow:0 6px 16px rgba(31,56,100,.25)}
+  .teacher .who h3{color:var(--brand);font-size:19px}
+  .teacher .who .role{color:var(--gold);font-weight:600;font-size:13px;margin-top:2px}
+  .teacher .who .role b{color:var(--muted);font-weight:400}
+  .teacher .body{padding:18px 22px 22px;flex:1;display:flex;flex-direction:column}
+  .teacher .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .teacher .tags span{background:var(--gold-soft);color:#5a4a14;font-size:12px;padding:3px 10px;border-radius:999px}
+  .teacher ul{list-style:none;margin:0 0 14px}
+  .teacher ul li{position:relative;padding-left:18px;font-size:13px;color:var(--muted);margin:6px 0}
+  .teacher ul li:before{content:"▸";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .teacher .metrics{margin-top:auto;display:flex;gap:10px;border-top:1px dashed var(--line);padding-top:12px}
+  .teacher .metrics div{flex:1;text-align:center}
+  .teacher .metrics .v{color:var(--brand);font-weight:800;font-size:18px}
+  .teacher .metrics .k{color:var(--muted);font-size:12px}
+
+  /* 案例墙 */
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer;font-size:14px;transition:.2s}
+  .chip.active,.chip:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .case{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.25s}
+  .case:hover{transform:translateY(-4px)}
+  .case .top{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:16px 18px}
+  .case .top .school{font-size:18px;font-weight:800}
+  .case .top .major{font-size:13px;color:#cdd8ef}
+  .case .badge{display:inline-block;margin-top:8px;background:var(--gold);color:#3a2d00;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+  .case .body{padding:18px;flex:1}
+  .case .row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .case .row span:first-child{color:var(--muted)}
+  .case .row span:last-child{font-weight:600}
+  .case .review{margin-top:12px;background:var(--gold-soft);border-radius:10px;padding:10px 12px;font-size:13px;color:#5a4a14}
+  .case .review b{color:var(--brand)}
+  .result-list{margin-top:6px}
+  .pill{display:inline-block;margin:3px 4px 0 0;font-size:12px;padding:3px 9px;border-radius:6px;background:#eef2f9;color:var(--brand)}
+  .pill.win{background:#e3f6ee;color:var(--ok)}
+
+  /* 套餐对比 */
+  table.cmp{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  table.cmp th,table.cmp td{padding:16px 18px;text-align:center;border-bottom:1px solid var(--line);font-size:14px}
+  table.cmp thead th{background:var(--brand);color:#fff;font-size:15px}
+  table.cmp thead th.hot{background:var(--gold);color:#3a2d00}
+  table.cmp td:first-child,table.cmp th:first-child{text-align:left;color:var(--brand);font-weight:600;background:#fafbfe}
+  table.cmp .yes{color:var(--ok);font-weight:700}
+  table.cmp .no{color:#c4ccd8}
+  table.cmp tr td.hotcol{background:#fffdf5}
+
+  /* 适合人群 */
+  .fit{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .fit .item{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .fit .item .dot{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .fit .item h4{color:var(--brand);font-size:16px;margin-bottom:4px}
+  .fit .item p{color:var(--muted);font-size:13px}
+
+  /* CTA */
+  .cta-band{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:24px;text-align:center;padding:48px 24px;box-shadow:var(--shadow)}
+  .cta-band h2{font-size:28px;margin-bottom:10px}
+  .cta-band p{color:#dbe4f5;margin-bottom:24px}
+
+  footer{background:#0f1d36;color:#9fb0cf;text-align:center;padding:28px;font-size:13px}
+  .note{max-width:1160px;margin:18px auto 0;padding:12px 24px;color:#9aa6b6;font-size:12px;text-align:center}
+
+  @media (max-width:900px){
+    .stats,.grid-3,.timeline,.cases,.fit{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:32px}
+  }
+  @media (max-width:600px){
+    .stats,.grid-3,.timeline,.cases,.fit{grid-template-columns:1fr}
+    .nav a:not(.cta){display:none}
+  }
+  @media print{
+    .nav,.hero .btns,.filters{display:none}
+    section{padding:24px 0}
+    .case:hover,.card:hover{transform:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">🎌 ＿＿留学 · <b>日本精英全日制</b></div>
+    <div>
+      <a href="#highlight">产品亮点</a>
+      <a href="#flow">服务流程</a>
+      <a href="#team">师资团队</a>
+      <a href="#cases">成功案例</a>
+      <a href="#compare">套餐对比</a>
+      <a href="#contact" class="cta">预约咨询</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">日本大学院 · 修士/研究生申请</span>
+    <h1>精英全日制（含学期）<br><em>从语言到名校合格，全程一对一托管</em></h1>
+    <p class="lead">面向冲刺旧帝大、早庆上理、难关国公立的学生。背景提升 · 研究计划书 · 教授套磁 · 出愿 · 面试 · 签证，一站式深度服务。</p>
+    <div class="btns">
+      <a href="#cases" class="btn gold">查看成功案例</a>
+      <a href="#flow" class="btn ghost">了解服务流程</a>
+    </div>
+
+    <!-- 数据看板：替换为真实数据 -->
+    <div class="stats">
+      <div class="stat"><div class="num"><b>＿＿</b>+</div><div class="lbl">累计成功案例</div></div>
+      <div class="stat"><div class="num"><b>＿＿</b>%</div><div class="lbl">名校（旧帝/早庆）占比</div></div>
+      <div class="stat"><div class="num"><b>＿＿</b>%</div><div class="lbl">录取满意率</div></div>
+      <div class="stat"><div class="num"><b>1对1</b></div><div class="lbl">全日制专属团队</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 产品亮点 -->
+<section id="highlight">
+  <div class="wrap">
+    <h2 class="sec-title">为什么选择 <span>精英全日制（含学期）</span></h2>
+    <p class="sec-sub">不是中介式“代申请”，而是顾问 + 文书 + 教授资源的全程深度陪跑。</p>
+    <div class="grid-3">
+      <div class="card"><div class="ico">🎓</div><h3>全程一对一托管</h3><p>专属顾问 + 专业文书老师 + 日语指导，签约到入学全周期负责，不换人、不甩单。</p></div>
+      <div class="card"><div class="ico">📝</div><h3>研究计划书精修</h3><p>结合目标教授研究方向打磨课题，反复修改至定稿，这是大学院录取的核心竞争力。</p></div>
+      <div class="card"><div class="ico">📨</div><h3>教授套磁资源</h3><p>不限教授数量套磁指导，匹配研究室、协助面谈与内诺，精英档专属。</p></div>
+      <div class="card"><div class="ico">🗓️</div><h3>含语言学期衔接</h3><p>覆盖语言学校在读期间的升学双线规划，出勤与成绩跟踪，避免“读语校耽误升学”。</p></div>
+      <div class="card"><div class="ico">🎤</div><h3>不限次模拟面试</h3><p>专业面试题库 + 多轮模拟与复盘，针对教授常问问题精准准备。</p></div>
+      <div class="card"><div class="ico">🛬</div><h3>签证 + 行前保障</h3><p>在留资格、签证材料到行前住宿/银行/保险指导，落地无缝衔接。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 服务流程 -->
+<section id="flow" class="flow">
+  <div class="wrap">
+    <h2 class="sec-title">八步 <span>服务流程</span></h2>
+    <p class="sec-sub">清晰的时间轴，让学生和家长全程心里有数。</p>
+    <div class="timeline">
+      <div class="step"><div class="n">1</div><h4>背景评估 · 定位</h4><p>学术/语言/研究方向综合评估，制定申请时间轴。</p></div>
+      <div class="step"><div class="n">2</div><h4>语言 · 学期规划</h4><p>语言学校衔接、N1/N2 与英语备考节点跟踪。</p></div>
+      <div class="step"><div class="n">3</div><h4>背景提升</h4><p>研究方向梳理、科研/实习建议与资源对接。</p></div>
+      <div class="step"><div class="n">4</div><h4>研究计划书</h4><p>课题打磨 + 全套出愿文书撰写与精修。</p></div>
+      <div class="step"><div class="n">5</div><h4>教授套磁</h4><p>匹配教授、套磁沟通、面谈/旁听协调。</p></div>
+      <div class="step"><div class="n">6</div><h4>出愿申请</h4><p>多校网申、材料核对、成绩与学历认证。</p></div>
+      <div class="step"><div class="n">7</div><h4>面试辅导</h4><p>题库 + 不限次模拟面试与复盘。</p></div>
+      <div class="step"><div class="n">8</div><h4>录取 · 签证 · 赴日</h4><p>在留资格、签证办理、行前指导。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 师资团队 -->
+<section id="team">
+  <div class="wrap">
+    <h2 class="sec-title">专业 <span>师资团队</span></h2>
+    <p class="sec-sub">以下为示例占位简历，请替换为机构真实老师信息（头像可换成照片）。</p>
+    <div class="team">
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">王</div>
+          <div class="who"><h3>王老师</h3><div class="role">首席规划顾问 <b>· 10 年日本申请经验</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>大学院修士</span><span>理工方向</span><span>选校规划</span></div>
+          <ul>
+            <li>东京大学硕士毕业，深耕日本理工科申请</li>
+            <li>擅长旧帝大、东工大等难关院校研究方向匹配</li>
+            <li>累计帮助 300+ 学生获得名校合格</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">10<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">300+</div><div class="k">成功案例</div></div>
+            <div><div class="v">N1</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">李</div>
+          <div class="who"><h3>李老师</h3><div class="role">资深文书 / 研究计划书导师 <b>· 8 年</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>研究计划书</span><span>文科/社科</span><span>教授套磁</span></div>
+          <ul>
+            <li>京都大学硕士，专注研究计划书与套磁辅导</li>
+            <li>擅长经济、传媒、社会学等方向课题打磨</li>
+            <li>指导文书获多所难关国公立内诺</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">8<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">500+</div><div class="k">文书篇数</div></div>
+            <div><div class="v">N1</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher">
+        <div class="head">
+          <div class="avatar">张</div>
+          <div class="who"><h3>张老师</h3><div class="role">日语 / 面试辅导外教 <b>· 6 年</b></div></div>
+        </div>
+        <div class="body">
+          <div class="tags"><span>日语教学</span><span>模拟面试</span><span>EJU</span></div>
+          <ul>
+            <li>日本籍 / 海归外教，负责面试与口语特训</li>
+            <li>熟悉各校面试题型与教授偏好</li>
+            <li>EJU 与校内考备考经验丰富</li>
+          </ul>
+          <div class="metrics">
+            <div><div class="v">6<small>年</small></div><div class="k">从业经验</div></div>
+            <div><div class="v">1000+</div><div class="k">面试辅导</div></div>
+            <div><div class="v">母语</div><div class="k">日语水平</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 成功案例 -->
+<section id="cases" style="background:#fff">
+  <div class="wrap">
+    <h2 class="sec-title">学生 <span>成功案例</span></h2>
+    <p class="sec-sub">以下为示例占位案例（已脱敏）。请将下方数据替换为机构真实案例。</p>
+    <div class="filters" id="filters"></div>
+    <div class="cases" id="caseGrid"></div>
+  </div>
+</section>
+
+<!-- 套餐对比 -->
+<section id="compare">
+  <div class="wrap">
+    <h2 class="sec-title">套餐 <span>对比</span></h2>
+    <p class="sec-sub">帮助学生快速看清精英全日制的差异化价值。</p>
+    <table class="cmp">
+      <thead>
+        <tr><th>服务内容</th><th>单项服务</th><th>标准全日制</th><th class="hot">精英全日制（含学期）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>一对一专属顾问</td><td class="no">—</td><td class="yes">✔</td><td class="hotcol yes">✔</td></tr>
+        <tr><td>含语言学校学期衔接</td><td class="no">—</td><td class="no">—</td><td class="hotcol yes">✔</td></tr>
+        <tr><td>研究计划书精修</td><td>单篇</td><td class="yes">✔</td><td class="hotcol yes">✔ 不限轮次</td></tr>
+        <tr><td>教授套磁</td><td class="no">—</td><td>有限</td><td class="hotcol yes">✔ 不限教授</td></tr>
+        <tr><td>背景提升资源</td><td class="no">—</td><td class="no">—</td><td class="hotcol yes">✔</td></tr>
+        <tr><td>模拟面试</td><td>单次</td><td>2-3 次</td><td class="hotcol yes">✔ 不限次</td></tr>
+        <tr><td>签证 + 行前指导</td><td class="no">—</td><td class="yes">✔</td><td class="hotcol yes">✔</td></tr>
+        <tr><td>适合人群</td><td>DIY 补强</td><td>稳妥申请</td><td class="hotcol">冲刺名校</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 适合人群 -->
+<section id="fit" style="background:#fff">
+  <div class="wrap">
+    <h2 class="sec-title">适合 <span>哪些学生</span></h2>
+    <div class="fit">
+      <div class="item"><div class="dot">🎯</div><div><h4>目标冲刺名校</h4><p>瞄准旧帝大、早庆上理、难关国公立，需要教授资源与深度文书。</p></div></div>
+      <div class="item"><div class="dot">🌱</div><div><h4>需要语言+升学双线</h4><p>计划先读语言学校，希望在读期间同步推进升学规划。</p></div></div>
+      <div class="item"><div class="dot">🔄</div><div><h4>跨专业 / 背景待提升</h4><p>需要研究方向梳理、背景提升与研究计划书重点突破。</p></div></div>
+      <div class="item"><div class="dot">🤝</div><div><h4>希望省心托管</h4><p>家长和学生时间有限，希望全程一对一负责到入学。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>想知道自己能申请到哪所日本院校？</h2>
+      <p>预约一对一评估，顾问将结合你的背景给出选校与时间规划建议。</p>
+      <a href="#" class="btn gold">预约免费评估</a>
+      <div style="margin-top:18px;color:#cdd8ef;font-size:14px">联系顾问：＿＿＿＿　|　电话/微信：＿＿＿＿＿＿</div>
+    </div>
+  </div>
+</section>
+
+<div class="note">※ 本页为顾问讲解用产品介绍页模板，案例与数据均为占位示例，请替换为机构真实且已脱敏的内容后使用。</div>
+<footer>© ＿＿＿＿留学　日本部　|　本资料仅供咨询沟通参考，最终服务以正式《留学服务协议》为准。</footer>
+
+<script>
+/* ============================================================
+   案例数据：把下面的占位案例替换成你的真实案例即可（注意脱敏）
+   字段说明：
+     cat     分类标签（用于筛选）：本科直申 / 大学院修士 / 研究生 / SGU英语项目 / 跨专业
+     school  录取院校（主录取）
+     major   专业方向
+     badge   高亮标签，如“低分逆袭”“跨专业”“奖学金”
+     bg      学生背景
+     jp      日语成绩
+     results 申请结果数组，{name:学校, win:true表示录取}
+     review  顾问点评/复盘
+   ============================================================ */
+const CASES = [
+  { cat:"大学院修士", school:"东京大学", major:"情报理工 · 修士", badge:"教授内诺",
+    bg:"国内 211 本科 · 计算机 · GPA 3.4/4.0", jp:"N1 118 · 托福 95",
+    results:[{name:"东京大学",win:true},{name:"东京工业大学",win:true},{name:"东北大学",win:true}],
+    review:"<b>复盘：</b>研究计划书与教授方向高度契合，套磁阶段提前确认课题，面试表现稳定。" },
+
+  { cat:"大学院修士", school:"京都大学", major:"经济学 · 修士", badge:"双非逆袭",
+    bg:"双非本科 · 经济 · 均分 86", jp:"N1 105 · 托业 870",
+    results:[{name:"京都大学",win:true},{name:"大阪大学",win:true},{name:"一桥大学",win:false}],
+    review:"<b>复盘：</b>用扎实的研究计划书弥补本科背景，重点突出量化分析能力。" },
+
+  { cat:"研究生", school:"大阪大学", major:"工学研究科 · 研究生", badge:"低分逆袭",
+    bg:"双非本科 · 机械 · GPA 3.0", jp:"N2 · 托福 80",
+    results:[{name:"大阪大学(研究生)",win:true},{name:"名古屋大学(研究生)",win:true}],
+    review:"<b>复盘：</b>先以研究生身份入学过渡，套磁锁定有名额教授，规避语言短板。" },
+
+  { cat:"跨专业", school:"早稻田大学", major:"国际传媒 · 修士", badge:"跨专业",
+    bg:"国内本科 · 英语专业 转 传媒", jp:"N1 110 · 托福 100",
+    results:[{name:"早稻田大学",win:true},{name:"庆应义塾大学",win:false},{name:"上智大学",win:true}],
+    review:"<b>复盘：</b>梳理可迁移能力，用实习与作品弥补跨专业，文书逻辑是关键。" },
+
+  { cat:"SGU英语项目", school:"庆应义塾大学", major:"经济学 SGU · 修士", badge:"无日语录取",
+    bg:"海外本科 · 经济 · GPA 3.6", jp:"无日语 · 托福 105 · GRE 322",
+    results:[{name:"庆应义塾大学(SGU)",win:true},{name:"东京大学(SGU)",win:false},{name:"早稻田(SGU)",win:true}],
+    review:"<b>复盘：</b>英语项目竞争集中在标化与文书，提前规划 GRE 与推荐信。" },
+
+  { cat:"本科直申", school:"东北大学", major:"理学部 · 学部", badge:"EJU高分",
+    bg:"高中毕业 · 理科生", jp:"N1 112 · EJU 理科 680",
+    results:[{name:"东北大学",win:true},{name:"北海道大学",win:true},{name:"筑波大学",win:true}],
+    review:"<b>复盘：</b>EJU 与校内考双线备考，语言学校期间稳步提分。" },
+];
+
+const grid = document.getElementById('caseGrid');
+const filterBar = document.getElementById('filters');
+const cats = ["全部", ...Array.from(new Set(CASES.map(c=>c.cat)))];
+
+function render(cat){
+  grid.innerHTML = "";
+  CASES.filter(c=>cat==="全部"||c.cat===cat).forEach(c=>{
+    const pills = c.results.map(r=>`<span class="pill ${r.win?'win':''}">${r.win?'✔ ':'✘ '}${r.name}</span>`).join("");
+    grid.insertAdjacentHTML('beforeend', `
+      <div class="case">
+        <div class="top">
+          <div class="school">${c.school}</div>
+          <div class="major">${c.major}</div>
+          <span class="badge">${c.badge}</span>
+        </div>
+        <div class="body">
+          <div class="row"><span>学生背景</span><span>${c.bg}</span></div>
+          <div class="row"><span>语言成绩</span><span>${c.jp}</span></div>
+          <div class="row" style="border:none"><span>申请结果</span><span></span></div>
+          <div class="result-list">${pills}</div>
+          <div class="review">${c.review}</div>
+        </div>
+      </div>`);
+  });
+}
+
+cats.forEach((c,i)=>{
+  const el=document.createElement('div');
+  el.className='chip'+(i===0?' active':'');
+  el.textContent=c;
+  el.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');render(c);};
+  filterBar.appendChild(el);
+});
+render("全部");
+</script>
+</body>
+</html>
